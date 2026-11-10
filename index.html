@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Girlgroup — K-pop Universe</title>
+<style>
+:root{--bg:#f7f5fb;--surface:#fff;--ink:#211b2b;--muted:#82798e;--accent:#a855f7;--accent2:#ec4899;--line:#eee8f4;--shadow:0 12px 35px #33204412}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,-apple-system,sans-serif}
+button,input{font:inherit}button{cursor:pointer;border:0}
+.app{max-width:1100px;margin:auto;min-height:100vh;padding:20px 20px 100px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:23px;letter-spacing:-1px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,#c084fc,#f472b6);display:grid;place-items:center;color:white}
+.iconbtn{width:42px;height:42px;border-radius:14px;background:var(--surface);box-shadow:var(--shadow);font-size:18px}
+.hero{padding:26px;border-radius:28px;background:linear-gradient(120deg,#2d1747,#6b2c91 60%,#d946a7);color:white;position:relative;overflow:hidden;margin-bottom:24px}
+.hero:after{content:"✦";position:absolute;font-size:180px;right:-10px;top:-65px;opacity:.12}
+.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;opacity:.8}.hero h1{font-size:clamp(28px,6vw,48px);line-height:1.05;margin:12px 0}.hero p{max-width:480px;color:#f4ddff;margin:0 0 18px}.hero .pill{background:#ffffff25;color:white;border:1px solid #ffffff35}
+.searchrow{display:flex;gap:10px;margin-bottom:22px}.search{flex:1;position:relative}.search input{width:100%;padding:14px 16px 14px 42px;border:1px solid var(--line);border-radius:16px;background:var(--surface);outline:none;color:var(--ink)}.search span{position:absolute;left:15px;top:13px;color:var(--muted)}
+.filters{display:flex;gap:8px;overflow:auto;padding-bottom:5px;margin-bottom:20px}.pill{padding:9px 15px;border-radius:100px;background:#eee8f5;color:#6f607e;white-space:nowrap;font-size:13px;font-weight:700}.pill.active{background:var(--ink);color:white}
+.sectionhead{display:flex;align-items:end;justify-content:space-between;margin:22px 0 14px}.sectionhead h2{font-size:21px;margin:0;letter-spacing:-.5px}.sectionhead small{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.groupcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:.2s}.groupcard:hover{transform:translateY(-3px)}.cover{height:135px;display:grid;place-items:center;color:white;font-size:34px;font-weight:900;letter-spacing:-2px;position:relative;overflow:hidden}.cover:before{content:"";position:absolute;width:170px;height:170px;border:1px solid #ffffff35;border-radius:50%;right:-55px;top:-70px}.cover:after{content:"✦";position:absolute;font-size:70px;opacity:.25;left:10px;bottom:-20px}.cardbody{padding:13px}.cardbody h3{margin:0;font-size:17px}.cardbody p{margin:4px 0;color:var(--muted);font-size:12px}.tags{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap}.tag{font-size:10px;font-weight:800;padding:4px 7px;background:#f3e8ff;color:#8b3fc2;border-radius:7px}
+.bottomnav{position:fixed;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(15px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:10}.navinner{max-width:600px;width:100%;display:flex;justify-content:space-around;padding:10px}.navitem{background:none;color:var(--muted);font-size:11px;display:grid;gap:3px;justify-items:center}.navitem b{font-size:19px}.navitem.active{color:var(--accent)}
+.detail{display:none}.back{background:none;color:var(--muted);padding:8px 0;margin-bottom:15px;font-weight:700}.detailhero{border-radius:25px;overflow:hidden;color:white;padding:25px;min-height:200px;position:relative}.detailhero h1{font-size:38px;margin:12px 0 4px}.detailhero p{margin:0;opacity:.85}.detailhero .bigstar{position:absolute;right:15px;bottom:-25px;font-size:150px;opacity:.13}
+.tabs{display:flex;gap:8px;margin:22px 0;overflow:auto}.tab{padding:10px 16px;border-radius:12px;background:#eee8f5;color:#766580;font-weight:800;white-space:nowrap}.tab.active{background:var(--accent);color:white}
+.infoPanel{background:var(--surface);border:1px solid var(--line);padding:18px;border-radius:20px;margin-bottom:15px}.infoPanel h3{margin:0 0 10px}.infoPanel p{color:var(--muted);margin:0}.membergrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.member{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:15px;text-align:center}.avatar{width:75px;height:75px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;color:white;font-size:25px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6)}.member h4{margin:0}.member p{font-size:12px;color:var(--muted);margin:4px 0}
+.albumlist{display:grid;gap:10px}.album{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--line);padding:12px;border-radius:16px}.albumart{width:62px;height:62px;border-radius:12px;display:grid;place-items:center;color:white;font-size:21px;font-weight:900;flex-shrink:0}.album h4{margin:0}.album p{margin:3px 0;color:var(--muted);font-size:12px}.album .year{margin-left:auto;color:var(--muted);font-size:12px}
+.empty{text-align:center;padding:35px;color:var(--muted);grid-column:1/-1}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.cover{height:170px}.membergrid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.app{padding-top:28px}}
+
+/* Member birthdays + expanded album tracklists */
+/* Official social links and chronological album layout */
+.social-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.social-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;font-size:12px;font-weight:750;color:var(--text);border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 11px;transition:transform .15s,border-color .15s}
+.social-link:hover{transform:translateY(-2px);border-color:var(--accent)}
+.social-logo{width:22px;height:22px;display:inline-grid;place-items:center;border-radius:6px;color:#fff;font-size:13px;font-weight:900;line-height:1}
+.social-logo.instagram{background:linear-gradient(135deg,#f9ce34,#ee2a7b 55%,#6228d7)}
+.social-logo.youtube{background:#ff0033;border-radius:6px}
+.social-logo.x{background:#111;border-radius:50%}
+.social-logo.tiktok{background:#111;border-radius:6px}
+.album{display:block}
+.album-main{width:100%;align-items:flex-start}
+.album-info{width:100%;flex:1}
+.album-info h4{font-size:17px;line-height:1.25;margin-bottom:5px}
+.album-info .release-date{display:block;margin:0 0 8px;color:var(--muted);font-size:12px}
+.album-count{margin-top:0}
+.albumart{float:left;margin-right:12px}
+.album-info{min-height:62px}
+.album .tracklist{clear:both;margin-top:13px}
+
+.member{transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column;align-items:center}
+.member:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.member .tag{margin-top:7px}
+.member-birthday{margin-top:10px;padding:7px 10px;border-radius:10px;background:#fdf2f8;color:#be185d;font-size:12px;font-weight:700;width:100%}
+.album{align-items:flex-start;flex-wrap:wrap;transition:box-shadow .18s}
+.album:hover{box-shadow:var(--shadow)}
+.album-main{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.album-info{min-width:0;flex:1}
+.album-info h4{overflow-wrap:anywhere}
+.album-count{display:inline-flex;margin-top:5px;padding:4px 8px;border-radius:8px;background:#f3e8ff;color:#7e22ce;font-size:11px;font-weight:800}
+ .tracklist{width:100%;padding:13px;background:#fcfaff;border:1px solid var(--line);border-radius:14px;margin-top:10px}
+.tracklist ol{list-style:none;padding:0;margin:0;counter-reset:track}
+.tracklist li{counter-increment:track;display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:start;gap:9px;padding:12px 4px;border-bottom:1px solid var(--line);font-size:13px}
+.tracklist li:last-child{border-bottom:0}
+.tracklist li:before{content:counter(track,decimal-leading-zero);font-size:11px;font-weight:800;color:var(--accent);padding-top:2px}
+.track-title{font-weight:800;overflow-wrap:anywhere}
+.track-meta{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.track-length{font-size:12px;font-weight:800;color:var(--ink);white-space:nowrap}
+.track-details{grid-column:2/-1;margin-top:5px;display:grid;gap:4px}
+.track-details span{font-size:11px;color:var(--muted);display:block;background:#f5effb;padding:5px 8px;border-radius:7px}
+.track-empty{font-size:12px;color:var(--muted);margin:0 0 8px}
+@media(max-width:420px){.app{padding:14px 12px 90px}.membergrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.member{padding:12px 9px}.album{padding:10px}.albumart{width:52px;height:52px}.year{font-size:11px}.detailhero h1{font-size:31px}}
+
+
+/* Custom library editor + richer profile cards */
+.editor-overlay{position:fixed;inset:0;background:#160d22a8;z-index:30;display:none;overflow:auto;padding:18px}
+.editor-box{max-width:760px;margin:25px auto;background:var(--surface);color:var(--ink);border-radius:22px;padding:20px;box-shadow:0 25px 80px #0003}
+.editor-box h2{margin:0 0 8px}.editor-box .hint{color:var(--muted);font-size:13px;margin:0 0 16px}
+.editor-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.editor-tabs button{background:#eee8f5;color:#6f607e;border-radius:10px;padding:9px 12px;font-weight:700}
+.editor-tabs button.active{background:var(--accent);color:#fff}
+.editor-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.editor-form label{font-size:12px;color:var(--muted);display:grid;gap:5px}
+.editor-form input,.editor-form select,.editor-form textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-width:0}
+.editor-form textarea{min-height:85px;resize:vertical}
+.editor-form .wide{grid-column:1/-1}
+.editor-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.editor-actions button{padding:10px 14px;border-radius:11px;background:var(--accent);color:white;font-weight:800}
+.editor-actions .secondary{background:#eee8f5;color:#6f607e}
+.editor-list{display:grid;gap:8px;margin-top:12px}
+.editor-item{padding:12px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.editor-item button{background:#fee2e2;color:#991b1b;border-radius:8px;padding:7px 10px}
+.member{position:relative}.member .profilefacts{display:grid;grid-template-columns:repeat(2,1fr);gap:5px;width:100%;margin-top:10px}
+.profilefacts span{background:var(--bg);border-radius:8px;padding:6px 4px;font-size:11px;color:var(--muted)}
+.profilefacts b{display:block;color:var(--ink);font-size:12px}
+.track-details{margin-top:5px;display:grid;gap:3px}
+.track-details span{font-size:11px;color:var(--muted);display:block}
+@media(max-width:520px){.editor-form{grid-template-columns:1fr}.editor-form .wide{grid-column:auto}.editor-overlay{padding:8px}.editor-box{padding:15px;margin:10px auto}}
+
+
+/* Album heading always above release date and track details, including mobile */
+.album .album-main{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important}
+.album .album-info{display:flex!important;flex-direction:column!important;align-items:flex-start!important;width:100%!important;min-width:0!important}
+.album .album-info h4{display:block!important;order:0!important;width:100%!important;margin:0 0 4px!important}
+.album .album-info .release-date{display:block!important;order:1!important;width:100%!important;margin:0 0 8px!important}
+.album .albumart{float:none!important;margin:0 0 10px!important}
+.album .album-count{display:block!important;order:2!important}
+.album .tracklist{clear:both!important;width:100%!important}
+@media(max-width:600px){
+ .album .album-main{flex-direction:column!important}
+ .album .album-info h4{font-size:16px!important;overflow-wrap:anywhere}
+ .album .album-info .release-date{font-size:12px!important}
+}
+
+</style>
+<link rel="manifest" href="./manifest.webmanifest"><meta name="theme-color" content="#111018"><link rel="apple-touch-icon" href="./icons/icon-192.png"><script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js"));}</script></head>
+<body>
+<div class="app">
+<header><div class="brand"><div class="logo">✦</div> girlgroup<span style="color:#b05be5">.</span></div><button class="iconbtn" id="settings" aria-label="Settings">⚙</button></header>
+<section id="home">
+<div class="hero"><div class="eyebrow">Your K-pop girl group universe</div><h1>Find your next<br>favorite group.</h1><p>Explore groups, meet the members, and dive into every era.</p><span class="pill">✦ Discover together</span></div>
+<div class="searchrow"><div class="search"><span>⌕</span><input id="search" placeholder="Search girl groups..." autocomplete="off"></div></div>
+<div class="filters" id="filters"><button class="pill active" data-filter="All">All groups</button><button class="pill" data-filter="4th Gen">4th gen</button><button class="pill" data-filter="5th Gen">5th gen</button><button class="pill" data-filter="3rd Gen">3rd gen</button></div>
+<div class="sectionhead"><h2>Explore girl groups</h2><small id="count"></small></div>
+<div class="grid" id="groupGrid"></div>
+</section>
+<section class="detail" id="detail">
+<button class="back" id="back">← Back to all groups</button>
+<div class="detailhero" id="detailhero"><div class="eyebrow">GROUP PROFILE</div><h1 id="dname"></h1><p id="dmeta"></p><span class="bigstar">✦</span></div>
+<div class="tabs"><button class="tab active" data-tab="overview">Overview</button><button class="tab" data-tab="members">Members</button><button class="tab" data-tab="discography">Discography</button></div>
+<div id="tabcontent"></div>
+</section>
+</div>
+
+<div class="editor-overlay" id="editorOverlay" role="dialog" aria-modal="true">
+ <div class="editor-box">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2>✦ Universe Studio</h2><button class="iconbtn" id="closeEditor">✕</button></div>
+  <p class="hint">Create groups, add member profiles, and build discographies with track credits. Changes save in this browser. Reference guide: KProfiles.com (verify details before publishing; this app does not automatically sync with KProfiles).</p>
+  <div class="editor-tabs"><button class="active" data-editor="group">Group</button><button data-editor="member">Members</button><button data-editor="album">Albums</button><button data-editor="track">Tracks & credits</button><button data-editor="manage">Manage data</button></div>
+  <div id="editorContent"></div>
+ </div>
+</div>
+
+<nav class="bottomnav"><div class="navinner"><button class="navitem active" id="navhome"><b>⌂</b>Discover</button><button class="navitem" id="navsaved"><b>♡</b>Favorites</button><button class="navitem" id="navabout"><b>✦</b>About</button></div></nav>
+<div style="max-width:1100px;margin:0 auto;padding:10px 20px 105px;color:var(--muted);font-size:11px;text-align:center">Profiles reference: <a href="https://kprofiles.com/" target="_blank" rel="noopener">KProfiles.com</a> · Manually verify facts and credits; KProfiles focuses mainly on artist/group profiles and is not a complete official music-credit database.</div>
+<script>
+const groups=[
+{name:"BLACKPINK",short:"BP",company:"YG Entertainment",debut:"2016",gen:"3rd Gen",members:[["Jisoo","Kim Ji-soo","Vocalist"],["Jennie","Kim Jennie","Rapper · Vocalist"],["Rosé","Park Chae-young","Main Vocalist"],["Lisa","Lalisa Manobal","Main Dancer · Rapper"]],albums:[["DEADLINE","Mini Album",2025],["BORN PINK","Album",2022],["THE ALBUM","Album",2020],["KILL THIS LOVE","Mini Album",2019],["SQUARE UP","Mini Album",2018]],bio:"BLACKPINK is a four-member girl group known for their powerful performances, global influence, and signature pop sound.",color:"linear-gradient(135deg,#f472b6,#8b5cf6"},
+{name:"TWICE",short:"TW",company:"JYP Entertainment",debut:"2015",gen:"3rd Gen",members:[["Nayeon","Im Na-yeon","Lead Vocalist"],["Jeongyeon","Yoo Jeong-yeon","Lead Vocalist"],["Momo","Hirai Momo","Main Dancer"],["Sana","Minatozaki Sana","Vocalist"],["Jihyo","Park Ji-hyo","Leader · Main Vocalist"],["Mina","Myoui Mina","Main Dancer"],["Dahyun","Kim Da-hyun","Rapper"],["Chaeyoung","Son Chae-young","Rapper"],["Tzuyu","Chou Tzuyu","Visual · Vocalist"]],albums:[["STRATEGY","Mini Album",2024],["With YOU-th","Mini Album",2024],["READY TO BE","Mini Album",2023],["BETWEEN 1&2","Mini Album",2022],["Formula of Love","Album",2021],["Eyes wide open","Album",2020]],bio:"TWICE is a nine-member group celebrated for catchy songs, bright concepts, and a beloved global fan community.",color:"linear-gradient(135deg,#fb7185,#f9a8d4"},
+{name:"aespa",short:"æ",company:"SM Entertainment",debut:"2020",gen:"4th Gen",members:[["Karina","Yu Ji-min","Leader · Main Dancer"],["Giselle","Uchinaga Aeri","Main Rapper"],["Winter","Kim Min-jeong","Main Vocalist"],["Ningning","Ning Yizhuo","Main Vocalist"]],albums:[["Whiplash","Mini Album",2024],["Armageddon","Album",2024],["Drama","Mini Album",2023],["MY WORLD","Mini Album",2023],["Girls","Mini Album",2022],["Savage","Mini Album",2021]],bio:"aespa blends futuristic storytelling, bold electronic pop, and powerhouse vocals into a distinctive universe.",color:"linear-gradient(135deg,#38bdf8,#8b5cf6"},
+{name:"IVE",short:"IVE",company:"Starship Entertainment",debut:"2021",gen:"4th Gen",members:[["Yujin","An Yu-jin","Leader · Vocalist"],["Gaeul","Kim Ga-eul","Rapper · Dancer"],["Rei","Naoi Rei","Rapper · Vocalist"],["Wonyoung","Jang Won-young","Vocalist"],["Liz","Kim Ji-won","Main Vocalist"],["Leeseo","Lee Hyun-seo","Vocalist"]],albums:[["IVE SWITCH","Mini Album",2024],["I'VE MINE","Mini Album",2023],["I've IVE","Album",2023],["After LIKE","Single",2022],["LOVE DIVE","Single",2022],["ELEVEN","Single",2021]],bio:"IVE delivers confident, elegant pop with memorable hooks and a self-assured identity.",color:"linear-gradient(135deg,#60a5fa,#c084fc"},
+{name:"LE SSERAFIM",short:"LS",company:"Source Music",debut:"2022",gen:"4th Gen",members:[["Sakura","Miyawaki Sakura","Vocalist"],["Kim Chaewon","Kim Chaewon","Leader · Vocalist"],["Huh Yunjin","Huh Yunjin","Vocalist"],["Kazuha","Nakamura Kazuha","Dancer · Vocalist"],["Hong Eunchae","Hong Eunchae","Vocalist"]],albums:[["CRAZY","Mini Album",2024],["EASY","Mini Album",2024],["UNFORGIVEN","Album",2023],["ANTIFRAGILE","Mini Album",2022],["FEARLESS","Mini Album",2022]],bio:"LE SSERAFIM stands for fearless confidence, athletic performance, and bold pop experimentation.",color:"linear-gradient(135deg,#f59e0b,#f43f5e"},
+{name:"NewJeans",short:"NJ",company:"ADOR",debut:"2022",gen:"4th Gen",members:[["Minji","Kim Min-ji","Vocalist"],["Hanni","Pham Ngoc Han","Vocalist"],["Danielle","Danielle Marsh","Vocalist"],["Haerin","Kang Haerin","Vocalist"],["Hyein","Lee Hye-in","Vocalist"]],albums:[["How Sweet","Single",2024],["Get Up","EP",2023],["OMG","Single Album",2023],["New Jeans","EP",2022]],bio:"NewJeans became known for a fresh, nostalgic sound and effortless visual storytelling.",color:"linear-gradient(135deg,#34d399,#38bdf8"},
+{name:"NMIXX",short:"N",company:"JYP Entertainment",debut:"2022",gen:"4th Gen",members:[["Lily","Lily Jin Morrow","Main Vocalist"],["Haewon","Oh Hae-won","Leader · Main Vocalist"],["Sullyoon","Seol Yoon-a","Vocalist"],["Bae","Bae Jin-sol","Vocalist"],["Jiwoo","Kim Ji-woo","Rapper · Dancer"],["Kyujin","Jang Kyu-jin","Main Dancer"]],albums:[["Fe3O4: STICK OUT","Mini Album",2024],["Fe3O4: BREAK","Mini Album",2024],[" expérgo","Mini Album",2023],["A Midsummer NMIXX's Dream","Single Album",2023],["ENTWURF","Single Album",2022]],bio:"NMIXX is a six-member group famous for its MIXX POP style, vocal power, and dynamic stage performances.",color:"linear-gradient(135deg,#a78bfa,#fb7185"},
+{name:"BABYMONSTER",short:"BM",company:"YG Entertainment",debut:"2024",gen:"5th Gen",members:[["Ruka","Kawai Ruka","Rapper · Dancer"],["Pharita","Pharita Chaikong","Vocalist"],["Asa","Enami Asa","Rapper"],["Ahyeon","Jung Ahyeon","Vocalist · Rapper"],["Rami","Shin Haram","Main Vocalist"],["Rora","Lee Dain","Vocalist"],["Chiquita","Riracha Phondechaphiphat","Vocalist"]],albums:[["DRIP","Album",2024],["BABYMONS7ER","Mini Album",2024],["Stuck In The Middle","Single",2024]],bio:"BABYMONSTER is a seven-member group showcasing strong live vocals, rap, and high-energy performance.",color:"linear-gradient(135deg,#fb7185,#7c3aed"},
+{name:"ILLIT",short:"IL",company:"BELIFT LAB",debut:"2024",gen:"5th Gen",members:[["Yunah","Noh Yun-ah","Vocalist"],["Minju","Park Min-ju","Vocalist"],["Moka","Sakai Moka","Dancer"],["Wonhee","Lee Won-hee","Vocalist"],["Iroha","Hokazono Iroha","Dancer"]],albums:[["I'LL LIKE YOU","Mini Album",2024],["SUPER REAL ME","Mini Album",2024]],bio:"ILLIT brings dreamy, playful pop with a youthful style and addictive melodies.",color:"linear-gradient(135deg,#f9a8d4,#818cf8"},
+{name:"KISS OF LIFE",short:"KIOF",company:"S2 Entertainment",debut:"2023",gen:"4th Gen",members:[["Julie","Julie Han","Leader · Rapper"],["Natty","Anatchaya Suputtipong","Main Dancer"],["Belle","Shim Hye-won","Main Vocalist"],["Haneul","Kim Ha-neul","Vocalist"]],albums:[["Lose Yourself","Mini Album",2024],["Midas Touch","Single",2024],["Born to be XX","Mini Album",2023],["KISS OF LIFE","Mini Album",2023]],bio:"KISS OF LIFE is recognized for confident R&B-pop, expressive artistry, and individual member strengths.",color:"linear-gradient(135deg,#fb923c,#e11d48"}
+];
+
+// Member birthdays (month/day/year). Update or extend these values anytime.
+const birthdays={
+"Jisoo":"January 3, 1995","Jennie":"January 16, 1996","Rosé":"February 11, 1997","Lisa":"March 27, 1997",
+"Nayeon":"September 22, 1995","Jeongyeon":"November 1, 1996","Momo":"November 9, 1996","Sana":"December 29, 1996","Jihyo":"February 1, 1997","Mina":"March 24, 1997","Dahyun":"May 28, 1998","Chaeyoung":"April 23, 1999","Tzuyu":"June 14, 1999",
+"Karina":"April 11, 2000","Giselle":"October 30, 2000","Winter":"January 1, 2001","Ningning":"October 23, 2002",
+"Yujin":"September 1, 2003","Gaeul":"September 24, 2002","Rei":"February 3, 2004","Wonyoung":"August 31, 2004","Liz":"November 21, 2004","Leeseo":"February 21, 2007",
+"Sakura":"March 19, 1998","Kim Chaewon":"August 1, 2000","Huh Yunjin":"October 8, 2001","Kazuha":"August 9, 2003","Hong Eunchae":"November 10, 2006",
+"Minji":"May 7, 2004","Hanni":"October 6, 2004","Danielle":"April 11, 2005","Haerin":"May 15, 2006","Hyein":"April 21, 2008",
+"Lily":"October 17, 2002","Haewon":"February 25, 2003","Sullyoon":"January 26, 2004","Bae":"December 28, 2004","Jiwoo":"April 13, 2005","Kyujin":"May 26, 2006",
+"Ruka":"March 20, 2002","Pharita":"August 26, 2005","Asa":"April 17, 2006","Ahyeon":"April 11, 2007","Rami":"October 17, 2007","Rora":"August 14, 2008","Chiquita":"February 17, 2009",
+"Yunah":"January 15, 2004","Minju":"May 11, 2004","Moka":"October 8, 2004","Wonhee":"June 26, 2007","Iroha":"February 4, 2008",
+"Julie":"March 29, 2000","Natty":"May 30, 2002","Belle":"March 20, 2004","Haneul":"May 25, 2005"
+};
+
+// Tracklists are arrays of song titles. Add tracks to any album title below.
+// Tracklists included here are starter entries; the rest can be filled in the same format.
+
+// Browser-local custom library. Existing starter content remains intact.
+const STORE_KEY="girlgroup_universe_custom_v2";
+const memberExtra={}; // keyed by member display name; extend through the editor
+const customData=(()=>{try{return JSON.parse(localStorage.getItem(STORE_KEY)||"{}")}catch(e){return {}}})();
+if(customData.groups) groups.push(...customData.groups);
+if(customData.memberExtra) Object.assign(memberExtra,customData.memberExtra);
+if(customData.tracklists) Object.assign(tracklists,customData.tracklists);
+function persistCustom(){localStorage.setItem(STORE_KEY,JSON.stringify({groups:groups.filter(g=>g._custom),memberExtra,tracklists:Object.fromEntries(Object.entries(tracklists).filter(([k])=>k.startsWith("custom:")))}))}
+function ageFromBirthday(value){if(!value)return "—";let d=new Date(value);if(isNaN(d))return "—";let now=new Date(),age=now.getFullYear()-d.getFullYear();if(now.getMonth()<d.getMonth()||(now.getMonth()===d.getMonth()&&now.getDate()<d.getDate()))age--;return age}
+function zodiacFromBirthday(value){if(!value)return "—";let d=new Date(value);if(isNaN(d))return "—";let m=d.getMonth()+1,day=d.getDate();return (m===1&&day>=20||m===2&&day<=18)?"Aquarius":(m===2&&day>=19||m===3&&day<=20)?"Pisces":(m===3&&day>=21||m===4&&day<=19)?"Aries":(m===4&&day>=20||m===5&&day<=20)?"Taurus":(m===5&&day>=21||m===6&&day<=20)?"Gemini":(m===6&&day>=21||m===7&&day<=22)?"Cancer":(m===7&&day>=23||m===8&&day<=22)?"Leo":(m===8&&day>=23||m===9&&day<=22)?"Virgo":(m===9&&day>=23||m===10&&day<=22)?"Libra":(m===10&&day>=23||m===11&&day<=21)?"Scorpio":(m===11&&day>=22||m===12&&day<=21)?"Sagittarius":"Capricorn"}
+function birthdayISO(name){let b=birthdays[name];if(!b)return "";let d=new Date(b);return isNaN(d)?"":d.toISOString().slice(0,10)}
+
+const tracklists={
+"DEADLINE":["JUMP",""],"BORN PINK":["Pink Venom","Shut Down","Typa Girl","Yeah Yeah Yeah","Hard to Love","The Happiest Girl","Tally","Ready For Love"],
+"THE ALBUM":["How You Like That","Ice Cream (with Selena Gomez)","Pretty Savage","Bet You Wanna (feat. Cardi B)","Lovesick Girls","Crazy Over You","Love To Hate Me","You Never Know"],
+"KILL THIS LOVE":["Kill This Love","Don't Know What To Do","Kick It","Hope Not","DDU-DU DDU-DU (Remix)"],
+"SQUARE UP":["DDU-DU DDU-DU","Forever Young","Really","See U Later"],
+"STRATEGY":["Strategy","Kiss My Lips","The Best Thing I Ever Did","Like a Fool"],
+"With YOU-th":["I Got You","ONE SPARK","Rush","New New","Bloom","You Get Me"],
+"READY TO BE":["Set Me Free","Moonlight Sunrise","Got the Thrills","Blame It on Me","Wallflower","Crazy Stupid Love"],
+"BETWEEN 1&2":["Talk that Talk","Queen of Hearts","Basics","Trouble","Brave","Gone","When We Were Kids"],
+"Formula of Love":["Scientist","Moonlight","Icon","Cruel","Real You","F.I.L.A (Fall In Love Again)","Last Waltz","Espresso","Rewind","Cactus","Push & Pull","Hello","1, 3, 2","Candy"],
+"Eyes wide open":["I Can't Stop Me","Hell in Heaven","Up No More","Do What We Like","Bring It Back","Believer","Queen","Go Hard","Shot Clock","Handle It","Depend on You","Say Something","Behind the Mask"],
+"Whiplash":["Whiplash","Kill It","Flights, Not Feelings","Pink Hoodie","Flowers","Just Another Girl"],
+"Armageddon":["Supernova","Armageddon","Set the Tone","Mine","Licorice","BAHAMA","Long Chat (#♥)","Prologue","Live My Life","Melody"],
+"Drama":["Drama","Trick or Trick","Don't Blink","Hot Air Balloon","YOLO","You"],
+"MY WORLD":["Welcome To MY World (feat. nævis)","Spicy","Salty & Sweet","Thirsty","I'm Unhappy","'Til We Meet Again"],
+"Girls":["Girls","Illusion","Lingo","Life's Too Short","ICU"," 도깨비불 (Illusion)"],
+"CRAZY":["CRAZY","Chasing Lightning","Pierrot","1-800-hot-n-fun","Crazier"],
+"EASY":["Easy","Swan Song","Smart","We got so much"],
+"UNFORGIVEN":["The World Is My Oyster","FEARLESS","Blue Flame","The Great Mermaid","ANTIFRAGILE","Impurities","Burn the Bridge","UNFORGIVEN (feat. Nile Rodgers)","No-Return (Into the unknown)","Eve, Psyche & The Bluebeard's wife","FEARNOT (Between you, me and the lamppost)","Flash Forward","Fire in the belly"],
+"ANTIFRAGILE":["The Hydra","ANTIFRAGILE","Impurities","No Celestial","Good Parts (when the quality is bad but I am)"],
+"FEARLESS":["The World Is My Oyster","FEARLESS","Blue Flame","The Great Mermaid","Sour Grapes"],
+"How Sweet":["How Sweet","Bubble Gum"],
+"Get Up":["New Jeans","Super Shy","ETA","Cool With You","Get Up","ASAP"],
+"OMG":["OMG","Ditto"],
+"New Jeans":["Attention","Hype Boy","Cookie","Hurt"],
+"Fe3O4: STICK OUT":["별별별 (See that?)","별별별 (See that?) (Instrumental)"],
+"Fe3O4: BREAK":["DASH","Soñar (Breaker)","Run For Roses","BOOM","Passionfruit","XOXO","Break The Wall"],
+"expérgo":["Young, Dumb, Stupid","Love Me Like This","PAXXWORD","Just Did It","My Gosh","HOME"],
+"A Midsummer NMIXX's Dream":["Party O'Clock","Roller Coaster"],
+"ENTWURF":["DICE","COOL (Your rainbow)","TANK","占 (TANK)","Funky Glitter Christmas"],
+"DRIP":["DRIP","FOREVER","Really Like You","BILLIONAIRE","Love In My Heart","Woke Up In Tokyo (RUKA & ASA)","BATTER UP","CLIK CLAK","LIKE THAT"],
+"BABYMONS7ER":["MONSTERS (Intro)","SHEESH","LIKE THAT","Stuck In The Middle","BATTER UP","DREAM"],
+"Stuck In The Middle":["Stuck In The Middle","Stuck In The Middle (7 ver.)"],
+"I'LL LIKE YOU":["I'll Like You","Cherish (My Love)","IYKYK (If You Know You Know)","Pimple","Tick-Tack"],
+"SUPER REAL ME":["My World","Magnetic","Midnight Fiction","Lucky Girl Syndrome"],
+"Lose Yourself":["Get Loud","R.E.M","Chemistry","Too Many Alex","Igloo"],
+"Midas Touch":["Midas Touch","Nothing"],
+"Born to be XX":["Bad News","Nobody Knows","My 808","TTG","Gentleman"],
+"KISS OF LIFE":["Shhh","Sugarcoat (NATTY Solo)","Countdown (BELLE Solo)","Kitty Cat (JULIE Solo)","Play Love Games (HANEUL Solo)"]
+};
+
+let current=null,activeTab="overview",filter="All",saved=new Set();
+const $=id=>document.getElementById(id);
+function renderGroups(){let q=$("search").value.toLowerCase();let arr=groups.filter(g=>(filter==="All"||g.gen===filter)&&g.name.toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:"base"}));$("count").textContent=arr.length+" groups"; $("groupGrid").innerHTML=arr.map(g=>`<article class="groupcard" data-name="${g.name}"><div class="cover" style="background:${g.color}">${g.short}</div><div class="cardbody"><h3>${g.name}</h3><p>${g.debut} · ${g.company}</p><div class="tags"><span class="tag">${g.gen}</span><span class="tag">${g.members.length} MEMBERS</span></div></div></article>`).join("")||'<div class="empty">No groups found. Try another search.</div>';document.querySelectorAll(".groupcard").forEach(c=>c.onclick=()=>openGroup(c.dataset.name))}
+function openGroup(name){current=groups.find(g=>g.name===name);activeTab="overview";$("home").style.display="none";$("detail").style.display="block";$("dname").textContent=current.name;$("dmeta").textContent=`${current.company} · Debut ${current.debut} · ${current.gen}`;$("detailhero").style.background=current.color;document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.tab===activeTab));renderTab();window.scrollTo(0,0)}
+const officialSocials={
+"BLACKPINK":{Instagram:"https://www.instagram.com/blackpinkofficial/",YouTube:"https://www.youtube.com/@BLACKPINK",X:"https://x.com/BLACKPINK",TikTok:"https://www.tiktok.com/@blackpinkofficial"},
+"TWICE":{Instagram:"https://www.instagram.com/twicetagram/",YouTube:"https://www.youtube.com/@TWICE",X:"https://x.com/JYPETWICE",TikTok:"https://www.tiktok.com/@twice_tiktok_official"},
+"aespa":{Instagram:"https://www.instagram.com/aespa_official/",YouTube:"https://www.youtube.com/@aespa",X:"https://x.com/aespa_official",TikTok:"https://www.tiktok.com/@aespa_official"},
+"IVE":{Instagram:"https://www.instagram.com/ivestarship/",YouTube:"https://www.youtube.com/@IVE",X:"https://x.com/IVEstarship",TikTok:"https://www.tiktok.com/@ive.official"},
+"LE SSERAFIM":{Instagram:"https://www.instagram.com/le_sserafim/",YouTube:"https://www.youtube.com/@LESSERAFIM_official",X:"https://x.com/IM_LESSERAFIM",TikTok:"https://www.tiktok.com/@le_sserafim"},
+"NewJeans":{Instagram:"https://www.instagram.com/newjeans_official/",YouTube:"https://www.youtube.com/@NewJeans",X:"https://x.com/NewJeans_ADOR",TikTok:"https://www.tiktok.com/@newjeans"},
+"NMIXX":{Instagram:"https://www.instagram.com/nmixx_official/",YouTube:"https://www.youtube.com/@NMIXX",X:"https://x.com/NMIXX_official",TikTok:"https://www.tiktok.com/@nmixx_official"},
+"BABYMONSTER":{Instagram:"https://www.instagram.com/babymonster_ygofficial/",YouTube:"https://www.youtube.com/@BABYMONSTER",X:"https://x.com/YGBABYMONSTER_",TikTok:"https://www.tiktok.com/@babymonster"},
+"ILLIT":{Instagram:"https://www.instagram.com/illit_official/",YouTube:"https://www.youtube.com/@ILLIT_official",X:"https://x.com/ILLIT_official",TikTok:"https://www.tiktok.com/@illit_official"},
+"KISS OF LIFE":{Instagram:"https://www.instagram.com/kissoflife_s2/",YouTube:"https://www.youtube.com/@KISSOFLIFE_official",X:"https://x.com/KISSOFLIFE_S2",TikTok:"https://www.tiktok.com/@kissoflife_s2"}
+};
+function socialMarkup(name){const s=officialSocials[name]||{};return Object.entries(s).map(([platform,url])=>`<a class="social-link" href="${url}" target="_blank" rel="noopener noreferrer" aria-label="${name} official ${platform}"><span class="social-logo ${platform.toLowerCase()}">${platform==="Instagram"?"◎":platform==="YouTube"?"▶":platform==="X"?"𝕏":"♪"}</span>${platform}</a>`).join("")}
+function renderTab(){let g=current;let html="";if(activeTab==="overview"){html=`<div class="infoPanel"><h3>About ${g.name}</h3><p>${g.bio}</p></div><div class="infoPanel"><h3>Group details</h3><p><b>Agency:</b> ${g.company}<br><b>Debut:</b> ${g.debut}<br><b>Generation:</b> ${g.gen}<br><b>Members:</b> ${g.members.length}${g.fandom?`<br><b>Fandom:</b> ${g.fandom}`:""}${g.officialColors?`<br><b>Official colors:</b> ${g.officialColors}`:""}</p></div><div class="infoPanel"><h3>Official social media</h3><div class="social-links">${socialMarkup(g.name)||"<p>Official links not added yet.</p>"}</div></div><div class="infoPanel"><h3>Discography highlights</h3><p>${g.albums.slice(0,3).map(a=>a[0]).join(" · ")}</p></div>`}
+if(activeTab==="members"){html=`<div class="sectionhead"><h2>Members</h2><small>${g.members.length} artists</small></div><div class="membergrid">${g.members.map((m,i)=>`<div class="member"><div class="avatar" style="background:${g.color}">${m[0].split(" ").map(x=>x[0]).join("").slice(0,2)}</div><h4>${m[0]}</h4><p>${m[1]}</p><span class="tag">${m[2]}</span><div class="member-birthday">🎂 ${birthdays[m[0]]||"Birthday: not added"}</div><div class="profilefacts">${(()=>{let x=memberExtra[m[0]]||{},b=birthdayISO(m[0]);return `<span><b>${b?ageFromBirthday(b)+" years":"—"}</b>Age</span><span><b>${b?zodiacFromBirthday(b):"—"}</b>Zodiac</span><span><b>${x.height||"—"}</b>Height</span><span><b>${x.nationality||"—"}</b>Nationality</span><span><b>${x.position||m[2]||"—"}</b>Position</span><span><b>${x.mbti||"—"}</b>MBTI</span><span><b>${x.bloodType||"—"}</b>Blood type</span><span><b>${x.birthplace||"—"}</b>Birthplace</span>`})()}</div>${memberExtra[m[0]]?.extra?`<p style="margin-top:8px">${memberExtra[m[0]].extra}</p>`:""}</div>`).join("")}</div>`}
+if(activeTab==="discography"){html=`<div class="sectionhead"><h2>Discography</h2><small>Oldest to newest</small></div><div class="albumlist">${[...g.albums].sort((a,b)=>(Number(a[2])||0)-(Number(b[2])||0)).map((a,i)=>{const tracks=tracklists[a[0]]||[];return `<article class="album"><div class="album-main"><div class="albumart" style="background:${g.color}">${g.short}</div><div class="album-info"><h4>${a[0]}</h4><p>${a[1]}</p><span class="release-date">Release date · ${a[2]}</span><span class="album-count">🎵 ${tracks.length?tracks.length+" tracks":"Tracklist pending"}</span></div>${tracks.length?`<div class="tracklist"><ol>${tracks.map((song,n)=>{let t=typeof song==="string"?{title:song}:song;return `<li><div><div class="track-title">${t.title||"Untitled"}</div><span class="track-meta">Track ${n+1}</span><div class="track-details">${t.producer?`<span>Producer · ${t.producer}</span>`:""}${t.composer?`<span>Composer · ${t.composer}</span>`:""}${t.lyricist?`<span>Lyricist · ${t.lyricist}</span>`:""}${t.arranger?`<span>Arranger · ${t.arranger}</span>`:""}${t.notes?`<span>Other credits · ${t.notes}</span>`:""}</div></div><span class="track-length">${t.length||"—"}</span></li>`}).join("")}</ol></div>`:`<div class="tracklist"><p class="track-empty">Tracklist hasn't been added yet. Add songs in the Tracks & credits setting.</p></div>`}</article>`}).join("")}</div><p style="color:var(--muted);font-size:12px;margin:14px 4px">Every album shows its complete tracklist and available song credits immediately. Add missing songs or credits in Settings → Tracks & credits.</p>`}
+$("tabcontent").innerHTML=html}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{activeTab=t.dataset.tab;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===t));renderTab()});
+$("back").onclick=()=>{$("detail").style.display="none";$("home").style.display="block";window.scrollTo(0,0)};
+$("search").oninput=renderGroups;document.querySelectorAll("#filters .pill").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll("#filters .pill").forEach(x=>x.classList.toggle("active",x===b));renderGroups()});
+$("settings").onclick=()=>openEditor();
+$("navhome").onclick=()=>{$("back").click()};$("navsaved").onclick=()=>alert("Favorites feature: tap the heart on a group (coming soon).");$("navabout").onclick=()=>alert("Girlgroup Universe · A fan-made K-pop girl group explorer.");
+
+let editorMode="group",editGroup=null;
+function openEditor(){$("editorOverlay").style.display="block";renderEditor()}
+function closeEditor(){$("editorOverlay").style.display="none"}
+$("closeEditor").onclick=closeEditor;
+$("editorOverlay").addEventListener("click",e=>{if(e.target===$("editorOverlay"))closeEditor()});
+document.querySelectorAll("[data-editor]").forEach(b=>b.onclick=()=>{editorMode=b.dataset.editor;document.querySelectorAll("[data-editor]").forEach(x=>x.classList.toggle("active",x===b));renderEditor()});
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function groupOptions(){return groups.map(g=>`<option value="${esc(g.name)}">${esc(g.name)}</option>`).join("")}
+function renderEditor(){
+ const root=$("editorContent");
+ if(editorMode==="group"){root.innerHTML=`<form class="editor-form" id="groupForm"><label>Group name<input name="name" required placeholder="e.g. UNIS"></label><label>Short label<input name="short" maxlength="6" placeholder="UNIS"></label><label>Agency<input name="company" placeholder="Company"></label><label>Debut year<input name="debut" placeholder="2024"></label><label>Fandom name<input name="fandom" placeholder="Official fandom"></label><label>Official colors<input name="officialColors" placeholder="Color names / hex"></label><label>Generation<select name="gen"><option>5th Gen</option><option>4th Gen</option><option>3rd Gen</option><option>2nd Gen</option><option>1st Gen</option></select></label><label>Theme gradient<input name="color" value="linear-gradient(135deg,#a78bfa,#fb7185)"></label><label class="wide">Group bio<textarea name="bio" placeholder="Short group introduction"></textarea></label></form><div class="editor-actions"><button onclick="saveGroup()">＋ Add group</button></div>`}
+ if(editorMode==="member"){root.innerHTML=`<form class="editor-form" id="memberForm"><label>Group<select name="group">${groupOptions()}</select></label><label>Stage name<input name="name" required></label><label>Full name<input name="full"></label><label>Position<input name="position" placeholder="Leader · Vocalist"></label><label>Birthday<input name="birthday" type="date"></label><label>Height<input name="height" placeholder="e.g. 165 cm"></label><label>Nationality<input name="nationality"></label><label>MBTI<input name="mbti"></label><label>Blood type<input name="bloodType" placeholder="e.g. O"></label><label>Birthplace<input name="birthplace"></label><label>Chinese zodiac<input name="chineseZodiac"></label><label>Instagram / socials<input name="socials"></label><label>Training period<input name="training"></label><label>Debut date<input name="debutDate" type="date"></label><label class="wide">Other profile details<textarea name="extra" placeholder="Languages, representative emoji, hobbies, trivia…"></textarea></label></form><div class="editor-actions"><button onclick="saveMember()">＋ Add / update member</button></div><p class="hint">Birthday automatically calculates age and Western zodiac in the member card.</p>`}
+ if(editorMode==="album"){root.innerHTML=`<form class="editor-form" id="albumForm"><label>Group<select name="group">${groupOptions()}</select></label><label>Album title<input name="title" required></label><label>Album type<input name="type" placeholder="Mini Album / Single / EP"></label><label>Release year<input name="year" type="number" min="1900" max="2100"></label><label class="wide">Cover gradient<input name="color" placeholder="Optional; group theme used by default"></label></form><div class="editor-actions"><button onclick="saveAlbum()">＋ Add album</button></div>`}
+ if(editorMode==="track"){root.innerHTML=`<form class="editor-form" id="trackForm"><label>Group<select name="group" onchange="populateAlbumSelect(this.value)">${groupOptions()}</select></label><label>Album<select name="album" id="trackAlbum">${(groups[0]?.albums||[]).map(a=>`<option>${esc(a[0])}</option>`).join("")}</select></label><label>Track title<input name="title" required></label><label>Length<input name="length" placeholder="3:24"></label><label>Producer<input name="producer"></label><label>Composer<input name="composer"></label><label>Lyricist<input name="lyricist"></label><label>Arranger<input name="arranger"></label><label class="wide">Notes / additional credits<textarea name="notes"></textarea></label></form><div class="editor-actions"><button onclick="saveTrack()">＋ Add track / credits</button></div><p class="hint">Tracks are appended in entered order. Repeat to build a full album tracklist.</p>`}
+ if(editorMode==="manage"){root.innerHTML=`<p class="hint">Custom groups and their data are stored locally in this browser. Export a backup before clearing browser data.</p><div class="editor-actions"><button onclick="exportLibrary()">⬇ Export JSON backup</button><button class="secondary" onclick="document.getElementById('importFile').click()">⬆ Import JSON</button><button class="secondary" onclick="resetCustom()">Reset custom data</button><input id="importFile" type="file" accept=".json,application/json" style="display:none" onchange="importLibrary(event)"></div><div class="editor-list">${groups.map(g=>`<div class="editor-item"><span><b>${esc(g.name)}</b><br><small>${g.members.length} members · ${g.albums.length} albums</small></span>${g._custom?`<button onclick="deleteGroup('${esc(g.name)}')">Delete</button>`:"<small>Built-in</small>"}</div>`).join("")}</div>`}
+}
+function saveGroup(){let f=new FormData($("groupForm")),name=f.get("name").trim();if(!name)return;if(groups.some(g=>g.name.toLowerCase()===name.toLowerCase()))return alert("That group already exists.");groups.push({name,short:f.get("short")||name.slice(0,3).toUpperCase(),company:f.get("company")||"Independent",debut:f.get("debut")||"—",gen:f.get("gen"),fandom:f.get("fandom"),officialColors:f.get("officialColors"),color:f.get("color")||"linear-gradient(135deg,#a78bfa,#fb7185)",bio:f.get("bio")||`${name} profile.`,members:[],albums:[],_custom:true});persistCustom();renderGroups();renderEditor();alert(name+" added!")}
+function saveMember(){let f=new FormData($("memberForm")),g=groups.find(x=>x.name===f.get("group")),name=f.get("name").trim();if(!g||!name)return;let member=[name,f.get("full")||name,f.get("position")||"Member"],old=g.members.findIndex(m=>m[0]===name);if(old>=0)g.members[old]=member;else g.members.push(member);if(f.get("birthday"))birthdays[name]=new Date(f.get("birthday")+"T12:00:00").toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});memberExtra[name]={height:f.get("height"),nationality:f.get("nationality"),mbti:f.get("mbti"),position:f.get("position"),bloodType:f.get("bloodType"),birthplace:f.get("birthplace"),chineseZodiac:f.get("chineseZodiac"),socials:f.get("socials"),training:f.get("training"),debutDate:f.get("debutDate"),extra:f.get("extra")};persistCustom();renderGroups();alert("Member profile saved.")}
+function saveAlbum(){let f=new FormData($("albumForm")),g=groups.find(x=>x.name===f.get("group")),title=f.get("title").trim();if(!g||!title)return;if(g.albums.some(a=>a[0]===title))return alert("Album already exists.");g.albums.unshift([title,f.get("type")||"Album",Number(f.get("year"))||new Date().getFullYear()]);if(f.get("color"))g.albumColor=f.get("color");persistCustom();renderGroups();alert("Album added. Add its tracks in Tracks & credits.")}
+function populateAlbumSelect(name){let g=groups.find(x=>x.name===name);$("trackAlbum").innerHTML=(g?.albums||[]).map(a=>`<option>${esc(a[0])}</option>`).join("")}
+function saveTrack(){let f=new FormData($("trackForm")),album=f.get("album"),key=album;if(!tracklists[key])tracklists[key]=[];tracklists[key].push({title:f.get("title"),length:f.get("length"),producer:f.get("producer"),composer:f.get("composer"),lyricist:f.get("lyricist"),arranger:f.get("arranger"),notes:f.get("notes")});persistCustom();alert("Track and credits saved to "+album+".")}
+function exportLibrary(){let blob=new Blob([JSON.stringify({groups:groups.filter(g=>g._custom),memberExtra,tracklists:Object.fromEntries(Object.entries(tracklists).filter(([k])=>k.startsWith("custom:")||groups.some(g=>g._custom&&g.albums.some(a=>a[0]===k))))},null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="girlgroup-universe-backup.json";a.click();URL.revokeObjectURL(a.href)}
+function importLibrary(e){let file=e.target.files[0];if(!file)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);groups.push(...(d.groups||[]).map(g=>({...g,_custom:true})));Object.assign(memberExtra,d.memberExtra||{});Object.assign(tracklists,d.tracklists||{});persistCustom();renderGroups();renderEditor();alert("Backup imported.")}catch(err){alert("Invalid backup file.")}};r.readAsText(file)}
+function resetCustom(){if(!confirm("Remove all custom groups and custom profile/track data from this browser?"))return;groups=groups.filter(g=>!g._custom);Object.keys(memberExtra).forEach(k=>delete memberExtra[k]);Object.keys(tracklists).filter(k=>k.startsWith("custom:")).forEach(k=>delete tracklists[k]);localStorage.removeItem(STORE_KEY);renderGroups();renderEditor()}
+function deleteGroup(name){if(!confirm("Delete "+name+"?"))return;groups=groups.filter(g=>g.name!==name);persistCustom();renderGroups();renderEditor()}
+
+renderGroups();
+</script>
+</body></html>
